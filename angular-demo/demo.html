@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css"/>
+<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="angular1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body ng-app="App">
+	<div ng-controller="ctrl">
+		<div class="row" style="margin-left: 0;margin-right: 0;">
+			<div class="col-sm-12" ng-repeat="(index,item) in arr" style="margin-bottom: 10px;">
+				<div class="col-sm-1">{{index + 1}}</div>
+				<div class="col-sm-6">
+					<div class="col-sm-12">
+						<div class="col-sm-9">
+							<div class="col-sm-6 col-xs-6">
+			                    <select class="form-control" ng-model="item.type">
+			                        <option value="">请选择</option>
+			                        <option value="1">现金</option>
+			                        <option value="2">支付宝</option>
+			                        <option value="3">微信</option>
+			                        <option value="5">建设分期</option>
+			                        <option value="6">广发分期</option>
+			                        <option value="7">招行分期</option>
+			                        <option value="8">借记卡</option>
+			                        <option value="9">贷记卡</option>
+			                        <option value="10">库分期</option>
+			                    </select>
+			                </div>
+			                <div class="col-sm-6 col-xs-6">
+			                    <input type="text" class="form-control" ng-model="item.price" placeholder="元">
+			                </div>
+						</div>
+		                <div class="col-sm-3 col-xs-3" ng-if="index != 0">
+	                        <button class="btn btn-default" ng-click="deleteBtn(index)">删除</button>
+	                    </div>
+	            	</div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<button class="btn btn-default" ng-click="add()">添加</button>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	angular.module('App',[]).controller('ctrl',function($scope,$http){
+		$scope.arr = [{type:'',price:''}];
+		$scope.add = function(){
+			var $aa = {type:'',price:''};
+			$scope.arr.push($aa);
+		};
+		$scope.deleteBtn = function(index){
+			$scope.arr.splice(index,1);
+		}
+	})
+</script>
+</html>
